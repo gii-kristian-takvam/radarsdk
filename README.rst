@@ -49,28 +49,28 @@ Instructions
         
             $ gem update bundler
 
-#. Create a Ruby virtual environment.
+#.  Create a Ruby virtual environment.
 
-::
-
-    # Create a parent directory for it if it doesn't already exist
-    $ mkdir -p ~/workspace/rubyenv/
+    ::
     
-    # Clone the wiki repe
-    $ cd ~/workspace/rubyenv/
-    $ git clone https://github.com/cedexis/radarsdk.git radarsdk-wiki-dev
-    
-    # Change to the ruby-environment branch
-    $ cd radarsdk-wiki-dev
-    $ git checkout wiki-ruby-environment
+        # Create a parent directory for it if it doesn't already exist
+        $ mkdir -p ~/workspace/rubyenv/
+        
+        # Clone the wiki repe
+        $ cd ~/workspace/rubyenv/
+        $ git clone https://github.com/cedexis/radarsdk.git radarsdk-wiki-dev
+        
+        # Change to the ruby-environment branch
+        $ cd radarsdk-wiki-dev
+        $ git checkout wiki-ruby-environment
 
 #.  Run gollum, passing the root directory of the wiki project.
 
-::
-
-    # You may want to link to run-gollum.sh in your ~/bin directory,
-    # so you can run it from anywhere
-    $ run-gollum.sh ~/workspace/repos/cedexis/radarsdk.wiki/
+    ::
+    
+        # You may want to link to run-gollum.sh in your ~/bin directory,
+        # so you can run it from anywhere
+        $ run-gollum.sh ~/workspace/repos/cedexis/radarsdk.wiki/
     
 View the lastest commit to the master branch by pointing your browser at
 http://localhost:4567.
