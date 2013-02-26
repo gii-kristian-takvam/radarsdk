@@ -4,7 +4,7 @@ E_BADARGS=65
 
 if [ $# -lt 1 ]
 then
-  echo "Usage: `basename $0` <wiki-root-directory> [<git-ref>]"
+  echo "Usage: `basename $0` <wiki-root-directory> [<git-ref>] [<python-virtualenv-root>]"
   exit $E_BADARGS
 fi
 

@@ -95,5 +95,10 @@ Instructions
         # so you can run it from anywhere
         $ run-gollum.sh ~/workspace/repos/cedexis/radarsdk.wiki/
     
+    Usage::
+    
+        $ run-gollum.sh 
+        Usage: run-gollum.sh <wiki-root-directory> [<git-ref>] [<python-virtualenv-root>]
+    
 View the lastest commit to the master branch by pointing your browser at
 http://localhost:4567.
