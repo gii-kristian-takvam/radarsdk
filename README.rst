@@ -68,5 +68,9 @@ Instructions
 
 ::
 
-    # From anywhere
-    $ run-gollum.sh ~/workspace/repos/cedexis/radarsdk.wiki
+    # You may want to link to run-gollum.sh in your ~/bin directory,
+    # so you can run it from anywhere
+    $ run-gollum.sh ~/workspace/repos/cedexis/radarsdk.wiki/
+    
+View the lastest commit to the master branch by pointing your browser at
+http://localhost:4567.
