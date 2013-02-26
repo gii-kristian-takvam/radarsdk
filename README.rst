@@ -64,6 +64,29 @@ Instructions
         $ cd radarsdk-wiki-dev
         $ git checkout wiki-ruby-environment
 
+#.  Setup `pygments <http://pygments.org/>`_
+
+    gollum using pygments.rb, which requires Python 2.  As Python 3 is
+    increasingly the default Python interpretter on newer systems, this
+    would be problemmatic if not for
+    `virtualenv <https://pypi.python.org/pypi/virtualenv>`_.
+    
+    Setup a Python virtual environment for gollum::
+    
+        $ mkdir -p ~/workspace/pythonenv
+        $ cd ~/workspace/pythonenv
+        $ virtualenv --python=python2 GOLLUM
+        
+        # Install Pygments
+        $ GOLLUM/bin/pip install pygments
+        
+    .. note::
+    
+        The GOLLUM directory above is used in the run-gollum.sh script.
+        It uses ~/workspace/pythonenv/GOLLUM by default.  Use the
+        3rd argument to specify a different virtual environment root
+        directory.
+
 #.  Run gollum, passing the root directory of the wiki project.
 
     ::

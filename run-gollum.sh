@@ -1,15 +1,21 @@
 #!/bin/bash
 
-EXPECTED_ARGS=1
 E_BADARGS=65
 
-if [ $# -ne $EXPECTED_ARGS ]
+if [ $# -lt 1 ]
 then
-  echo "Usage: `basename $0` WIKI_ROOT_DIRECTORY"
+  echo "Usage: `basename $0` <wiki-root-directory> [<git-ref>]"
   exit $E_BADARGS
 fi
 
 WIKI_ROOT_DIR=${1}
+
+# Get the git ref
+GIT_REF=develop
+if [ $# -eq 2 ]
+then
+    GIT_REF=${2}
+fi
 
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
@@ -19,6 +25,17 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 export BUNDLE_GEMFILE="${SCRIPT_DIR}/"Gemfile
-echo $BUNDLE_GEMFILE
+#echo $BUNDLE_GEMFILE
 
-bundle exec gollum "${WIKI_ROOT_DIR}"
+# Need to source our python virtual environment
+GOLLUM_HOME=~/workspace/pythonenv/GOLLUM
+if [ $# -eq 3 ]
+then
+    GOLLUM_HOME="${3}"
+fi
+PYTHON_ACTIVATE="${GOLLUM_HOME}/bin/activate"
+#echo ${PYTHON_ACTIVATE}
+source ${PYTHON_ACTIVATE}
+
+# Start gollum
+bundle exec gollum "${WIKI_ROOT_DIR}" --ref=${GIT_REF}
