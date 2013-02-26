@@ -1,18 +1,20 @@
 #!/bin/bash
 
-E_BADARGS=65
-
-if [ $# -lt 1 ]
+if [[ $# -eq 1 && ${1} = "-h" ]]
 then
-  echo "Usage: `basename $0` <wiki-root-directory> [<git-ref>] [<python-virtualenv-root>]"
-  exit $E_BADARGS
+    echo "Usage: `basename $0` [<wiki-root-directory>] [<git-ref>] [<python-virtualenv-root>]"
+    exit 1
 fi
 
-WIKI_ROOT_DIR=${1}
+WIKI_ROOT_DIR=~/workspace/repos/cedexis/radarsdk.wiki/
+if [ $# -gt 0 ]
+then
+    WIKI_ROOT_DIR=${1}
+fi
 
 # Get the git ref
 GIT_REF=develop
-if [ $# -eq 2 ]
+if [ $# -gt 1 ]
 then
     GIT_REF=${2}
 fi
@@ -29,7 +31,7 @@ export BUNDLE_GEMFILE="${SCRIPT_DIR}/"Gemfile
 
 # Need to source our python virtual environment
 GOLLUM_HOME=~/workspace/pythonenv/GOLLUM
-if [ $# -eq 3 ]
+if [ $# -gt 2 ]
 then
     GOLLUM_HOME="${3}"
 fi
