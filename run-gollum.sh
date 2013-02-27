@@ -13,7 +13,7 @@ then
 fi
 
 # Get the git ref
-GIT_REF=develop
+GIT_REF=master
 if [ $# -gt 1 ]
 then
     GIT_REF=${2}
