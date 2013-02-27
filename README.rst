@@ -78,7 +78,7 @@ Instructions
         $ virtualenv --python=python2 GOLLUM
         
         # Install Pygments
-        $ GOLLUM/bin/pip install pygments
+        $ GOLLUM/bin/pip install -r <path to requirements.txt>
         
     .. note::
     

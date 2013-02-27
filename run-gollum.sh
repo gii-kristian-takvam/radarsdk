@@ -40,4 +40,4 @@ PYTHON_ACTIVATE="${GOLLUM_HOME}/bin/activate"
 source ${PYTHON_ACTIVATE}
 
 # Start gollum
-bundle exec gollum "${WIKI_ROOT_DIR}" --ref=${GIT_REF}
+bundle exec gollum "${WIKI_ROOT_DIR}" --ref=${GIT_REF} --css
