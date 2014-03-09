@@ -9,6 +9,7 @@
 #import "DemoAppSpeedTestViewController.h"
 #import "DemoAppAppDelegate.h"
 #import "Radar.h"
+#import "RadarVars.h"
 
 @interface DemoAppSpeedTestViewController ()
 @property (nonatomic, strong) NSMutableDictionary *providerData;
@@ -434,6 +435,9 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self doSpeedTestReloadId:reloadId];
     });
+    
+    // Report RUM event
+    [[Radar instance] reportEvent:RadarEventsSpeedTest];
 }
 
 #pragma mark - Table view data source

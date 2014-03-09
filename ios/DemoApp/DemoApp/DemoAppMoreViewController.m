@@ -9,6 +9,7 @@
 #import "DemoAppMoreViewController.h"
 #import "DemoAppAppDelegate.h"
 #import "Radar.h"
+#import "RadarVars.h"
 
 @interface DemoAppMoreViewController ()
 
@@ -50,6 +51,35 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error {
+    
+    NSUInteger reportId = [[Radar instance] reportEvent:RadarEventsUserEmail];
+    
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            [[Radar instance] reportProperty:RadarPropertiesUserEmailResult
+                                       Value:@"cancelled"
+                                   ForReport:reportId];
+            break;
+        case MFMailComposeResultSaved:
+            [[Radar instance] reportProperty:RadarPropertiesUserEmailResult
+                                       Value:@"saved"
+                                   ForReport:reportId];
+            break;
+        case MFMailComposeResultSent:
+            [[Radar instance] reportProperty:RadarPropertiesUserEmailResult
+                                       Value:@"sent"
+                                   ForReport:reportId];
+            break;
+        case MFMailComposeResultFailed:
+            [[Radar instance] reportProperty:RadarPropertiesUserEmailResult
+                                       Value:[NSString stringWithFormat:@"failure: %@", [error description]]
+                                   ForReport:reportId];
+            break;
+        default:
+            break;
+    }
+    
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -73,6 +103,9 @@
                                           cancelButtonTitle:@"Ok"
                                           otherButtonTitles:nil];
     [alert show];
+    
+    [[Radar instance] reportEvent:RadarEventsUserClearedDatabase
+                         WithTags:RadarTagsLevelWarning];
 }
 
 - (IBAction)doRemoteProbing:(id)sender {
@@ -83,6 +116,8 @@
                                           delegate:nil
                                  cancelButtonTitle:@"Ok"
                                  otherButtonTitles:nil];
+        
+        [[Radar instance] reportEvent:RadarEventsUserRemoteProbing];
     }
     else {
         alert = [[UIAlertView alloc] initWithTitle:nil
