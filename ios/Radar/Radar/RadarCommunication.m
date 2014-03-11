@@ -23,7 +23,10 @@
     }
     
     // Add query string
-    NSString *cacheBusting = [NSString stringWithFormat:@"rnd=%@", CFUUIDCreateString(NULL, CFUUIDCreate(NULL))];
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    NSString *cacheBusting = [NSString stringWithFormat:@"rnd=%@", uuidString];
     NSString *queryString = [self.data queryString];
 
     if (0 < [queryString length]) {
